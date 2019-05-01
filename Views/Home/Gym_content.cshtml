@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Yoga_content";
+    Layout = "~/Views/Home/Gym.cshtml";
+    var id = "";
+}
+<div id="home" class="tab-pane fade in active yoga" style="height: 80%">
+
+    @foreach (var i in ViewData["Yoga"] as IEnumerable<DigitalSphere.Models.Gym>)
+    {
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="#yoga1" data-toggle="modal" data-target="#yoga1">
+                    @{ 
+        var imgString = Convert.ToBase64String(i.Pic);
+        var pic = String.Format("data:image/gif;base64,{0}", imgString);
+        id = i.Body_Part;}
+
+                    <img src="@pic" alt="@i.Excercise_Name" style="width: 100%; height: 220px">
+                    <div class="caption" style="background-color: #00bcd4; color: #ffffff">
+                        <center>
+                            <h4>@i.Excercise_Name</h4>
+                        </center>
+                    </div>
+                </a>
+                <div class="modal fade" id="yoga1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding: 15px 25px; background-color: #00bcd4; color: #ffffff">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <center>
+                                    <h4>@i.Excercise_Name</h4>
+                                </center>
+                            </div>
+                            <div class="modal-body" style="padding: 40px 50px;">
+
+                                @i.Info
+
+                                <!--         This pose teaches one to stand with majestic steadiness like a mountain. 
+										The word 'Tada' means a mountain, that's where the name comes from. 
+										It involves the major groups of muscles and improves focus and concentration.
+										It is the starting position for all the other poses.
+                            <br />
+                            <br />
+                            <br />
+
+
+                            Stand with your heels slightly apart and hang your arms besides the torso.
+										Gently lift and spread your toes and the balls of your feet, then lay them softly down on the floor.
+										Balance your body weight on your feet.<br />
+                            <br />
+                            <br />
+                            Lift your ankles and firm your thigh muscles while rotating them inwards.
+										As you inhale, elongate your torso and when you exhale release your shoulder blades away from your head.
+										Broaden your collarbone and elongate your neck.
+                            <br />
+                            <br />
+                            <br />
+                            Your ears, shoulders, hips and ankles should all be in one line. 
+										You can check your alignment by standing against the wall initially.
+										You can even raise your hands and stretch them. Breathe easy.-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+            
+            
+    }
+</div>
+<script>
+
+    $(document).ready()
+    {
+
+        $("#@id").addClass("activetab");
+        $("#fitness").addClass("activetab");
+        $("#gym").addClass("activetab");
+        $("#category").addClass("activetab");
+
+    }
+</script>

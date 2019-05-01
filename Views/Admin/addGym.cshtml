@@ -1,0 +1,33 @@
+﻿@model DigitalSphere.Models.Gym
+
+
+@{
+    ViewBag.Title = "addGym";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<div class="col-md-3"></div>
+    
+@using (Html.BeginForm("addGym", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{ 
+    
+    <div class="col-md-5" style="margin-top: 100px; margin-left: 80px">
+
+    <form class="form">
+        <input type="file" name="f" class="form-control"/><br />
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Body_Part, new { @class = "form-control", @placeholder = "Body Part" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Excercise_Name, new { @class = "form-control", @placeholder = "Excercise" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Info, new { @class = "form-control", @placeholder = "Info" })
+        </div>
+        <input type="submit"  class="btn btn-primary form-control" value="Add"/>
+    </form>
+
+   </div>
+    <div class="col-md-2">
+
+    </div>
+}

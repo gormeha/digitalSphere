@@ -1,0 +1,145 @@
+﻿@model IEnumerable<DigitalSphere.Models.Employee>
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>profile</h2>
+@foreach (var i in Model)
+{
+    <div class="container">
+
+        <div class="text-center">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="text-center col-md-4" >
+                    <div class="img-circle imgprofile" style="height: 300px; width: 300px">
+                        @{
+    var imgString = Convert.ToBase64String(i.Pro_pic);
+    var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                        }
+
+                        <img src="@pic" class="img-circle" id="EmpImg" style="height:300px; width:300px;  margin-left:30px;"/><br />
+                        <a class="img-circle glyphicon glyphicon-camera camera"  data-target="#camera" data-toggle="modal"></a>
+
+                        <br />
+
+                    </div>
+
+                            @Html.ActionLink(" ", "EditProfile", null, new { @id = "edit", @class = " glyphicon glyphicon-pencil", @style = "font-size:x-large; margin-left:250px" });                   
+                    <div class="caption" >
+                        <br />
+                        <h4 style="font-family: 'Arial Unicode MS'">@i.EmpName</h4>
+                        <h4 style="font-family: 'Arial Unicode MS'">@i.Role</h4>
+                    </div>
+
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+
+        </div>
+
+        <br />
+        <br />
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="">
+                <table class="table" style="width: 800px; font-size: large; table-layout: initial">
+                    <tbody>
+                        <tr>
+
+                            <td>Name 
+                            </td>
+                            <td>
+                                @i.EmpName
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Role
+                            </td>
+                            <td>
+                                @i.Role
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Date Of Birth
+                            </td>
+                            <td>
+                                @i.DOB.ToShortDateString()
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Qualification
+                            </td>
+                            <td>
+                                @i.Qualification
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Address
+                            </td>
+                            <td>
+                                @i.Address
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Contact
+                            </td>
+                            <td>
+                                @i.Contact
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Email
+                            </td>
+                            <td>
+                                @i.Email
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+                <div class="modal fade" id="camera" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body text-center">
+                            @using (Html.BeginForm("changePic", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                            {
+                                <input type="file" name="image" class="form-control" /><br />
+                                <button type="submit" value="Change" class="btn btn-primary btn-block">Change</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+}
+
+<script>
+$(document).ready(function(){
+    $('#edit').tooltip({title: "EditProfile", trigger: "hover"}); 
+});
+</script>

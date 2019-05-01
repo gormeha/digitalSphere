@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DigitalSphere.Models.Book>
+
+
+@{
+    ViewBag.Title = "Library";
+    Layout = "~/Views/Shared/Librarian_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped" style="margin-top: 100px">
+            <thead style="font-size: small">
+                <tr>
+                   <td></td>
+                     <td>Book_id</td>
+                    <td>Author</td>
+                    <td>Title</td>
+                    <td>Available</td>
+                    <td>Publication</td>
+                    <td>ISBN</td>
+                    <td>Category</td>
+                    <td>Language</td>
+                    <td>Price</td>
+                    <td>Total Copies</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody style="font-size: small">
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>@{    
+               var imgstring=Convert.ToBase64String(i.book_pic);
+               var pic=String.Format("data:image/gif;base64,{0}",imgstring);
+               <img src="@pic"  style="height:120px; width:120px" />
+
+               }</td>
+            
+                        <td>@i.Book_Id</td>
+                        <td>@i.Author</td>
+                        <td>@i.Title</td>
+                        <td>@i.Available</td>
+                        <td>@i.Pubication</td>
+                        <td>@i.ISBN</td>
+                        <td>@i.Category</td>
+                        <td>@i.Language</td>
+                        <td>@i.Price</td>
+                        <td>@i.Total_Copies</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = @i.Book_Id }, new { onclick = "return confirm('Are you sure?')" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

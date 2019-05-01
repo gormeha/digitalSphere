@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Librarian_Layout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-fluid">
+
+
+        <!-- Top navbar  -->
+        <div class="row shadow navbar-fixed-top" style="background-color: skyblue;">
+
+            <!--Collapse btn-->
+            <div id="nav-button" class="btn btn-success" data-target="#left-navbar" onclick="openNav()">
+
+
+                <span style="font-size: 30px; cursor: pointer;">&nbsp;&nbsp;&#9776;</span>
+
+            </div>
+            <!--end collapse btn -->
+
+            @Html.ActionLink("Librarian Panel", "Library", "Library", null, new { @class = "text-center admin" })
+
+            <!-- Profile tab -->
+
+            <a class="profile" data-target="#profiles" onclick="showProfile()">
+
+                  @{
+                      
+                          var imgString = Convert.ToBase64String((byte[])Session["AdminPic"]);
+                          var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                      
+                <img src="@pic" alt="not found" class="img-circle" style="height:inherit; width:60px" />
+                <label style="color: blue; position: absolute; top: 10px; left: 90px;">@Session["Admin"]
+                    <br />
+                    Librarian</label>
+                <span id="glyphi" style="position: absolute; top: 20px; right: 20px;" class="glyphicon glyphicon-chevron-down"></span>
+                  }
+            </a>
+
+
+            <ul id="profiles" class="list-group profilenav" style="width: 0px">
+                @Html.ActionLink("Profile", "Profile", "Library", null, new { @class = "list-group-item" })
+                 @Html.ActionLink("Change Password", "changePassword", "Library", null, new { @class = "list-group-item" })
+                @Html.ActionLink("Logout", "Logout", "Admin", null, new { @class = "list-group-item" })
+            </ul>
+
+            <!--End Profile tab -->
+
+        </div>
+        <!--End Top navbar  -->
+
+        <!-- Left navbar-->
+        <div style="height: 100%">
+            <ul class="list-group sidenavicon" id="left-navbar-icon" style="font-size: 15px; box-shadow: 3px 3px 3px 3px grey">
+                <li>@Html.ActionLink(" ", "Library", "Library", null, new {@id="book", @class = "fa fa-book list-group-item", @style = "font-size:large" })</li>
+                <li>@Html.ActionLink(" ", "IssuedBook", "Library", null, new {@id="issue", @class = "list-group-item fa fa-book ", @style = "font-size:large" })</li>
+                <li>@Html.ActionLink(" ", "Add", "Library", null, new {@id="addbook", @class = "fa fa-plus list-group-item", @style = "font-size:large" })</li>
+            </ul>
+
+            <ul class="list-group sidenav " style="width: 0px; box-shadow: 3px 3px 3px 3px grey" id="left-navbar">
+                 <li>@Html.ActionLink(" Books", "Library", "Library", null, new { @class = "fa fa-book list-group-item", @style = "font-size:large" })</li>
+                <li>@Html.ActionLink(" IssuedBooks", "IssuedBook", "Library", null, new { @class = "list-group-item fa fa-book ", @style = "font-size:large" })</li>
+                <li>@Html.ActionLink(" AddBook", "Add", "Library", null, new { @class = "fa fa-plus list-group-item", @style = "font-size:large" })</li>
+               
+            </ul>
+
+
+        </div>
+        <!--End Left navbar-->
+    </div>
+
+    <!-- content  -->
+    <div class="container-fluid">
+        <div class="row" id="main-content" style="margin-left: 100px">
+
+
+            <div>@RenderBody()</div>
+
+        </div>
+    </div>
+    <script>
+
+        $('#issue').tooltip({ title: "Issued Books", trigger: "hover", placement: "right" });
+        $('#addbook').tooltip({ title: "Add Book", trigger: "hover", placement: "right" });
+        $('#book').tooltip({ title: "Books", trigger: "hover", placement: "right" });
+
+
+        function openNav() {
+
+            if (document.getElementById("left-navbar").style.width == "0px") {
+
+                document.getElementById("left-navbar-icon").style.width = "0px";
+                document.getElementById("left-navbar").style.width = "250px";
+                document.getElementById("main-content").style.marginLeft = "250px";
+
+            }
+            else {
+                document.getElementById("left-navbar-icon").style.width = "50px";
+                document.getElementById("left-navbar").style.width = "0px";
+                document.getElementById("main-content").style.marginLeft = "50px";
+
+            }
+
+        }
+        function closeNav() {
+            document.getElementById("left-navbar-icon").style.width = "50px";
+            document.getElementById("left-navbar").style.width = "0px";
+            document.getElementById("main-content").style.marginLeft = "50px";
+        }
+        function showProfile() {
+            if (document.getElementById("profiles").style.width == "0px") {
+                document.getElementById("profiles").style.width = "250px";
+                document.getElementById("glyphi").className = "glyphicon glyphicon-chevron-up";
+
+            }
+            else {
+                document.getElementById("profiles").style.width = "0px";
+                document.getElementById("glyphi").className = "glyphicon glyphicon-chevron-down";
+            }
+        }
+    </script>
+
+</body>
+</html>

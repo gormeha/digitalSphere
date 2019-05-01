@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DigitalSphere.Models.Notification>
+@{
+    ViewBag.Title = "Notification";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Notification</h2>
+
+<div>
+  @using (Html.BeginForm("AddNotify","Admin",FormMethod.Get))
+  { 
+    <button type="submit" class="btn btn-success" style="position:absolute; right:30px; margin-top:20px; width:100px">Add</button>
+  }
+</div>
+
+
+<div class="container">
+<div class="table-responsive"> 
+<table border="1" class="table table-striped" style="margin-top:100px;">
+    <thead style="font-size:small; color:blue">
+        <tr>
+            <td>Notification Id</td>
+            <td>Message</td>
+            <td>Start Date</td>
+            <td>End Date</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody style="font-size:small">
+        @foreach (var i in Model)
+        {
+        <tr>
+
+            <td>@i.Notify_Id</td>
+            <td>@i.Message</td>
+            <td>@i.StartDate.ToShortDateString()</td>
+            <td>@i.EndDate.ToShortDateString()</td>
+            <td>@Html.ActionLink("Delete","DeleteNotify",new { id=@i.Notify_Id},new{ onclick="return confirm('Are you sure you want to delete?')"})</td>
+        </tr>
+        }
+    </tbody>
+</table>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DigitalSphere.Models.Coach_Emp_Sport>
+
+@{
+    ViewBag.Title = "CoachDetails";
+    Layout = "~/Views/Shared/SportAdmin_Layout.cshtml";
+}
+
+
+<div style="margin-top:60px">
+  @using (Html.BeginForm("Add_Coach", "Sports", FormMethod.Get))
+  { 
+    <button type="submit" class="btn btn-success" style="position:absolute; right:30px; margin-top:20px; width:100px">Add</button>
+  }
+</div>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped" style="margin-top: 100px;">
+            <thead style="font-size: small">
+                <tr>
+                    <td></td>
+                    <td>Name</td>
+                    <td>Specialization</td>
+                    <td>Experiance</td>
+                    <td>Qualification</td>
+                    <td>Join_Date</td>
+                    <td>Contact</td>
+                    <td>Sport Name</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody style="font-size: small">
+                @foreach (var i in Model)
+                {
+                    <tr>
+                         <td>       @{
+                    var imgString = Convert.ToBase64String(i.Pro_pic);
+                    var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                }
+                                    
+                        <img src="@pic" class="img-circle" style="height:120px; width:120px" /></td>
+                    
+                        <td>@i.EmpName</td>
+                        <td>@i.Specialization</td>
+                        <td>@i.Experience</td>
+                        <td>@i.Qualification</td>
+                        <td>@i.Join_Date.ToShortDateString()</td>
+                        <td>@i.Contact</td>
+                        <td>@i.Sport_Name</td>
+                        
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = @i.Job_Id })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

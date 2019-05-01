@@ -1,0 +1,84 @@
+﻿
+@model DigitalSphere.Models.Feedback
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+					<!-- start of contact us id -->
+
+<body background="~/images/back2.jpg">
+
+	<div class="row" style="margin-top:80px">
+		<div class="col-md-6">
+		<form>
+		
+		
+		<center><h2><b>-:Contact Details:-</b></h2></center><br/>
+		
+		<center><h4><b><i>IT Souls,Embedded Systems & Software Solution</i></b></h4></center><br/>
+		  <h5 style="padding-left: 120px"><b class="glyphicon glyphicon-map-marker"></b> FF-103/119,Saffron Complex,Fatehgunj,Vadodara.<br />
+                </h5>
+                <h5 style="padding-left: 120px"><b class="glyphicon glyphicon-earphone"></b> 0265-3096388                  
+                    <br />
+                </h5>
+                <h5 style="padding-left: 120px"><b class="glyphicon glyphicon-envelope"></b> gaurang@itsouls.com   
+                    <br />
+                </h5>
+                <h5 style="padding-left: 120px"><b class="glyphicon glyphicon-globe"></b> <a href="http:\\www.itsouls.com">www.itsouls.com </a></h5>
+                <h5 style="padding-left: 120px"><b class="fa fa-facebook"></b> <a href="https://www.facebook.com/ITsouls/">www.facebook.com/itsouls</a></h5>
+
+		</form>
+		</div>
+		
+		<div class="col-md-1">
+		</div>
+	      
+	<div class="col-md-4" style="background:url(/images/gray.jpg) repeat; border:1px solid black; opacity:0.85; color:white">
+	@using(Html.BeginForm("FeedbackEmployee","Home")) 
+    {
+		<form>
+		
+		 <h3><center><b>Feedback</b></center></h3>
+			<div class="form-group">
+				<label for="usrname"><span class="glyphicon glyphicon-user"></span>Name</label>
+				<!--<input type="text" class="form-control" id="usrname2" placeholder="Enter Full Name">-->
+                @Html.TextBoxFor(m => m.Name, new { @class="form-control",@placeholder="Enter Name"})
+			</div>
+			<div class="form-group">
+				<label for="email"><span class="glyphicon glyphicon-envelope"></span> Email ID</label>
+<!--				<input type="text" class="form-control" id="eid" placeholder="Enter Email-Id">-->
+                @Html.TextBoxFor(m => m.Email, new { @class="form-control",@placeholder="Enter Email Id"})
+			</div>
+			<div class="form-group">
+				<label for="contact"><span class="glyphicon glyphicon-earphone"></span> Contact No</label>
+<!--				<input type="text" class="form-control" id="cid" placeholder="Enter Contact No">-->
+                @Html.TextBoxFor(m => m.Contact, new { @class="form-control",@placeholder="Enter Contact NO"})
+			</div>
+			<div class="form-group">
+				<label for="contact"><span class="glyphicon glyphicon-pencil"></span> Feedback</label>
+<!--				<textarea class="form-control" id="cid" placeholder="Enter Feedback" rows="4"></textarea>-->
+                @Html.TextAreaFor(m => m.Description, new { @class="form-control",@placeholder="Enter Name"})
+			</div>
+			<br/>
+			<button type="submit" class="btn btn btn-block" style="background-color:#00bcd4; color:#ffffff;">&nbsp;Submit</button>
+			<h3 style="color:#00bcd4">@TempData["feedback"]</h3>
+            <br /><br /><br /><br />
+		</form>
+    }
+	</div>
+	<div class="col-md-1">
+		</div>
+	
+	
+					</div>
+					<!-- end of contact us id -->
+					
+	
+	<script>
+	    $(document).ready(function () {
+	        
+	        $("#contactus").addClass("activetab");
+	    });
+</script>
+
+</body>	

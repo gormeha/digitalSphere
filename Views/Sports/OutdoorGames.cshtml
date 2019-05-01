@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DigitalSphere.Models.Sport>
+@{
+    ViewBag.Title = "IndoorChange";
+    Layout = "~/Views/Shared/SportAdmin_Layout.cshtml";
+}
+
+<h2>IndoorChange</h2>
+
+
+@{
+    var i = 1; 
+   }
+
+<div>
+  @using (Html.BeginForm("AddGame", "Sports", FormMethod.Get))
+  { 
+    <button type="submit" class="btn btn-success" style="position:absolute; right:30px; margin-top:20px; width:100px">Add</button>
+  }
+</div>
+<div class="container">
+    <div class="" style="margin-top:100px">
+<table style="margin-left:20px; margin-top:50px;" class="table ">
+<tbody>    
+    <tr>
+@foreach (var item in Model)
+{
+
+    i = i + 1;
+    <div class="col-md-4">
+        <div style="width: 300px" class="text-center">
+            <div class="sport-back  ">
+   @{    
+               var imgstring=Convert.ToBase64String(item.Picture);
+               var pic=String.Format("data:image/gif;base64,{0}",imgstring);
+                   
+            <img src="@pic"  alt="@item.Sport_Name"  class=" sport-pic"  style="height:200px; width:300px"/>
+           }
+         
+                <span class="sport-text">
+                    @Html.ActionLink(" ", "SportGames", new { id = @item.Sport_Id }, new { @class = "glyphicon glyphicon-info-sign" })
+                    @Html.ActionLink(" ", "SportGames", new { id = @item.Sport_Id }, new { @class = "glyphicon glyphicon-trash",onclick = "return confirm('Are you sure you want to delete?')"  })
+
+                </span>
+            </div>
+            <div class="caption" style="font-size: medium; margin-top: 20px">
+                @Html.ActionLink(item.Sport_Name, "SportGames", new { id = @item.Sport_Id })
+            </div>
+
+        </div>
+    </div>
+    if (@i > 3)
+    { 
+        @:</tr>
+        @:<tr>
+            i = 1;
+    }
+
+
+}
+        </tr>
+    </tbody>
+    </table>
+
+    </div>
+</div>

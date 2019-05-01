@@ -1,0 +1,346 @@
+﻿@model DigitalSphere.Models.TicketBooking
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+    var price = 0;
+    var price_total = 0;
+    var sid = "";
+    var s = TempData["Booked"];
+    var a = TempData["showid"];
+    var state = TempData["Show"];
+
+}
+<div class="">
+    @foreach (var item in ViewData["Movie"] as IEnumerable<DigitalSphere.Models.Movie>)
+    {
+        <div id="multiplex">
+
+            <div class="col-md-12">
+                <div class="m thumbnail">
+
+
+                    <img src="~/images/grey3.jpg" alt="@item.MovieName" style="width: 100%; height:150px ;">
+
+
+                    <div class="bottomleft">@item.MovieName</div>
+                    <div class="bottomright">
+                        <i class="a">@item.Censor</i>&nbsp;
+						 <i class="a">@item.Release_Date.ToShortDateString()</i>&nbsp;
+						 <b class="a">@item.Language</b>&nbsp;
+						 <b class="a">@item.Genre</b>&nbsp;
+                        @{ price = @item.Price;}
+                    </div>
+
+                </div>
+
+            </div>
+            <br />
+            <div class="col-md-4" style="padding-left: 20px; padding-bottom: 25px">
+                @{
+                           var imgString = Convert.ToBase64String(item.Movie_Pic);
+                           var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                }
+
+                <img src="@pic" alt="@item.MovieName" style="width: 100%; height: 60%;">
+            </div>
+            <div class="col-md-8" style="background-color: white; width: 65%; height: 60%; padding-bottom: 25px; padding-right: 20px">
+
+                <ul class="nav nav-pills nav-justified">
+                    <li class="active tabcolor"><a data-toggle="pill" class="" href="#movie1">@DateTime.Today.ToShortDateString()</a></li>
+                    <li class="tabcolor"><a data-toggle="pill" href="#movie2" class="">@DateTime.Today.AddDays(1).ToShortDateString()</a></li>
+                    <li class="tabcolor"><a data-toggle="pill" href="#movie3" class="">@DateTime.Today.AddDays(2).ToShortDateString()</a></li>
+                </ul>
+                <div class="tab-content" style="margin-top: 50px; font-size: medium">
+
+
+                    <div id="movie1" class="tab-pane fade in active">
+
+                        @foreach (var i in ViewData["date1"] as IEnumerable<DigitalSphere.Models.ShowTime>)
+                        {
+                            <div class="td1 col-md-2"><a href="#modal1" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#424242'" data-toggle="modal" data-target="#@i.TID" style="color: #424242">@i.Time</a></div>
+                            <div class="col-md-1"></div>
+                            sid = i.TID + "";
+                                
+                                
+                            <div class="modal fade" id="@i.TID" role="dialog" style="padding-top: 70px;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <center>
+                                                <h4><span class="glyphicon glyphicon-check"></span>&nbsp; Book Your Tickets</h4>
+                                            </center>
+                                        </div>
+                                        <div class="modal-body" style="padding: 40px 50px;">
+                                            @using (Html.BeginForm("booking/" + @i.TID, "Home", FormMethod.Post))
+                                            {
+              
+                                                <form role="form">
+                                                    <div class="form-group">
+                                                        <label for="price for 1 ticket"><span class="glyphicon glyphicon-money"></span>Price(per head): </label>
+                                                        <label for="1ticket price"><b>Rs.@price/-</b></label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="no.of tickets"><span class="glyphicon glyphicon-user"></span>No. of tickets:</label>
+                                                        <!--     <input type="text" class="form-control" id="ticketsno" placeholder="Enter no of tickets You want to book">-->
+                                                        @Html.TextBoxFor(m => m.Total_Tickets, new { @class = "form-control", @placeholder = "Enter no of tickets You want to book" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="email"><span class="glyphicon glyphicon-envelope"></span>Email ID</label>
+                                                        <!--                       <input type="text" class="form-control" id="eid" placeholder="Enter Email-Id">-->
+                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email-Id" })
+                                                    </div>
+
+                                                    <input type="hidden" value="@sid" name="ShowId" />
+                                                    <input type="submit" value="Procced" class="btn btn btn-block" style="background-color: #00bcd4;">
+                                                    <!--                    <button id="procced" value="@sid" class="btn btn-block">asdf<!--<a href="#modal2" data-toggle="modal" data-target="#modal2" style="color: #ffffff">&nbsp;Proceed</a>-</button>-->
+                                                </form>
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        }
+                    </div>
+
+                    <div id="movie2" class="tab-pane fade">
+                        @foreach (var i in ViewData["date2"] as IEnumerable<DigitalSphere.Models.ShowTime>)
+                        {
+           
+                            <div class="td1 col-md-2"><a href="#modal1" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#424242'" data-toggle="modal" data-target="#@i.TID" style="color: #424242">@i.Time</a></div>
+                            <div class="col-md-1"></div>
+                            sid = i.TID + "";
+                                
+                            <div class="modal fade" id="@i.TID" role="dialog" style="padding-top: 70px;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <center>
+                                                <h4><span class="glyphicon glyphicon-check"></span>&nbsp; Book Your Tickets</h4>
+                                            </center>
+                                        </div>
+                                        <div class="modal-body" style="padding: 40px 50px;">
+                                            @using (Html.BeginForm("booking/" + @i.TID, "Home", FormMethod.Post))
+                                            {
+              
+                                                <form role="form">
+                                                    <div class="form-group">
+                                                        <label for="price for 1 ticket"><span class="glyphicon glyphicon-money"></span>Price(per head): </label>
+                                                        <label for="1ticket price"><b>Rs.@price/-</b></label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="no.of tickets"><span class="glyphicon glyphicon-user"></span>No. of tickets:</label>
+                                                        <!--     <input type="text" class="form-control" id="ticketsno" placeholder="Enter no of tickets You want to book">-->
+                                                        @Html.TextBoxFor(m => m.Total_Tickets, new { @class = "form-control", @placeholder = "Enter no of tickets You want to book" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="email"><span class="glyphicon glyphicon-envelope"></span>Email ID</label>
+                                                        <!--                       <input type="text" class="form-control" id="eid" placeholder="Enter Email-Id">-->
+                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email-Id" })
+                                                    </div>
+
+                                                    <input type="hidden" value="@sid" name="ShowId" />
+                                                    <input type="submit" value="Procced" class="btn btn btn-block" style="background-color: #00bcd4;">
+                                                    <!--                    <button id="procced" value="@sid" class="btn btn-block">asdf<!--<a href="#modal2" data-toggle="modal" data-target="#modal2" style="color: #ffffff">&nbsp;Proceed</a>-</button>-->
+                                                </form>
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                
+                        }
+                    </div>
+
+                    <div id="movie3" class="tab-pane fade">
+                        @foreach (var i in ViewData["date3"] as IEnumerable<DigitalSphere.Models.ShowTime>)
+                        {
+                            <div class="td1 col-md-2"><a href="#modal1" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#424242'" data-toggle="modal" data-target="#@i.TID" style="color: #424242">@i.Time</a></div>
+                            <div class="col-md-1"></div>
+                            sid = i.TID + "";
+                                
+                                
+                            <div class="modal fade" id="@i.TID" role="dialog" style="padding-top: 70px;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <center>
+                                                <h4><span class="glyphicon glyphicon-check"></span>&nbsp; Book Your Tickets</h4>
+                                            </center>
+                                        </div>
+                                        <div class="modal-body" style="padding: 40px 50px;">
+                                            @using (Html.BeginForm("booking/" + @i.TID, "Home", FormMethod.Post))
+                                            {
+              
+                                                <form role="form">
+                                                    <div class="form-group">
+                                                        <label for="price for 1 ticket"><span class="glyphicon glyphicon-money"></span>Price(per head): </label>
+                                                        <label for="1ticket price"><b>Rs.@price/-</b></label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="no.of tickets"><span class="glyphicon glyphicon-user"></span>No. of tickets:</label>
+                                                        <!--     <input type="text" class="form-control" id="ticketsno" placeholder="Enter no of tickets You want to book">-->
+                                                        @Html.TextBoxFor(m => m.Total_Tickets, new { @class = "form-control", @placeholder = "Enter no of tickets You want to book" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="email"><span class="glyphicon glyphicon-envelope"></span>Email ID</label>
+                                                        <!--                       <input type="text" class="form-control" id="eid" placeholder="Enter Email-Id">-->
+                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email-Id" })
+                                                    </div>
+
+                                                    <input type="hidden" value="@sid" name="ShowId" />
+                                                    <input type="submit" value="Procced" class="btn btn btn-block" style="background-color: #00bcd4;">
+                                                    <!--                    <button id="procced" value="@sid" class="btn btn-block">asdf<!--<a href="#modal2" data-toggle="modal" data-target="#modal2" style="color: #ffffff">&nbsp;Proceed</a>-</button>-->
+                                                </form>
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+<!-- start of movie details modal-->
+
+
+
+<div class="modal fade" id="modal2" role="dialog" style="padding-top: 70px;">
+    <div class="modal-dialog" style="height: 30%; width: 40%; font-size: small">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center>
+                    <h4>Booking Summary </h4>
+                </center>
+            </div>
+            <div class="modal-body" style="padding: 40px 50px;">
+                @if (state == null)
+                { }
+                else
+                {
+
+                    foreach (var i in state as IEnumerable<DigitalSphere.Models.TicketBooking>)
+                    {
+                        using (Html.BeginForm("Book", "Home", FormMethod.Post))
+                        {
+                       
+                             price_total = i.Total_Price;
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="usrname">Username:</label>
+                            <label id="id" for="jobid"><b>@i.Job_Id</b></label>
+                            <input type="hidden" value="@i.Job_Id" name="jobid" />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="movie">Movie Name:</label>
+                            <label id="movie" for="movie"><b>@i.Movie_Name</b></label>
+                            <input type="hidden" value="@i.Movie_Name" name="movie" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email-Id:</label>
+                            <label id="email" for="emailid"><b>@i.Email</b></label>
+                            <input type="hidden" value="@i.Email" name="email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Total No. of tickets:</label>
+                            <label id="ticket" for="noof tickets"><b>@i.Total_Tickets</b></label>
+                            <input type="hidden", value="@i.Total_Tickets", name="ticket"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time">Time:</label>
+                            <label id="time" for="timeofshow"><b>@i.Time</b></label>
+                            <input type="hidden" value="@i.Time" name="time" />
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date:</label>
+                            <label id="date" for="total price"><b>@i.Show_Date.ToShortDateString()</b></label>
+                            <input type="hidden" value="@i.Show_Date" name="date" />
+                        </div>
+                        <div class="form-group">
+                            <label for="screenno">Screen No:</label>
+                            <label id="screen" for="screenno"><b>@i.Screen_Id.Substring(6)</b></label>
+                            <input type="hidden" value="@i.Screen_Id" name="screen" />
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Total price:</label>
+                            <label id="price" for="total price"><b>Rs.@i.Total_Price/-</b></label>
+                            <input type="hidden" value="@price_total" name="price" />
+                        </div>
+
+                        <input type="hidden" value="@a" name="showid" />
+                        <!--<a href="../Home/book" data-toggle="modal" data-target="#modal3" style="color: #ffffff">&nbsp; -->
+                        <input type="submit" class="btn btn btn-block" style="background-color: #00bcd4;" id="ok" value="OK" />
+                    </form>
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal3" role="dialog" style="padding-top: 200px">
+    <div class="modal-dialog" style="height: 20%; width: 40%">
+        <div class="modal-content">
+
+            <div class="modal-body" style="padding: 40px 50px; text-align: center; font-size:medium">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <form role="form">
+                    <div class="form-group">
+                        <label>
+                            Thank You for Booking!!<br />
+                            Rs.@Session["price"] /- will be deducted from your salary account.</label>
+                    </div>
+
+                    <button class="btn btn btn-block" style="background-color: #00bcd4;"><a href="multiplex.html" style="color: #ffffff">&nbsp;Ok</a></button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $("#category").addClass("activetab");
+        $("#multiplex").addClass("activetab");
+
+        @if (state != null)
+        {
+        @:$('#modal2').modal('show');
+                          
+        }
+        @if (TempData["Booked"] == "Booked")
+        {
+            @:$('#modal3').modal('show');
+                }
+        /*
+        $("#ok").click(function () {
+            alert("asd");
+            $('#modal3').modal('show');
+
+        });
+        */
+    });
+
+</script>

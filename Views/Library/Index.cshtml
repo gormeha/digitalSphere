@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DigitalSphere.Models.Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<div class="container">
+<div class="jumbotron" style="background-color:#ccc; height:100px; margin-top:50px " >
+      @foreach(var item in ViewData["Library"] as IEnumerable<DigitalSphere.Models.Employee>)
+         {
+       
+    <div class="col-md-4 text-center" style="margin-left:50px">
+       @{    
+               var imgstring=Convert.ToBase64String(item.Pro_pic);
+               var pic=String.Format("data:image/gif;base64,{0}",imgstring);
+              
+             <img src="@pic" class="img-circle" alt="Coach Profile" style="height:250px; width:250px" />
+       }       
+    </div>
+     <div><div style="font-size: large; font-weight: 100; font-family:'Times New Roman'">
+           <br />
+            <span style="font-size: x-large; font-weight: bold">@item.EmpName<br />
+            </span><br />  
+            
+             @item.Role<br />
+            @item.Qualification<br />
+             @item.Email<br />
+             @item.Contact
+       </div>
+        
+     </div>
+      }
+</div>
+
+<div class="table-responsive" style="margin-top:250px">
+<h2 class="text-center">Books Available</h2><br /><br />
+<table  class="table table-striped" style="font-size:small">
+    <thead>
+        <tr>
+            <td></td>
+            <td>Book_id</td>
+            <td>Title</td>
+            <td>Auther</td>
+            <td>Publication</td>
+            <td>Price</td>
+            <td>Category</td>
+            <td>ISBN</td>
+            <td>Available</td>
+            <td>Total Copies</td>
+            <td>Language</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var i in Model) 
+        {
+        <tr>
+            <td>@{    
+               var imgstring=Convert.ToBase64String(i.book_pic);
+               var pic=String.Format("data:image/gif;base64,{0}",imgstring);
+               <img src="@pic" class="" style="height:120px; width:120px" />
+
+               }</td>
+            <td>@i.Book_Id</td>
+            <td>@i.Title</td>
+            <td>@i.Author</td>
+            <td>@i.Pubication</td>
+            <td>@i.Price</td>
+            <td>@i.Category</td>
+            <td>@i.ISBN</td>
+            <td>@i.Available</td>
+            <td>@i.Total_Copies</td>
+            <td>@i.Language</td>
+        </tr>
+        }
+    </tbody>
+</table>
+   </div>
+    </div>

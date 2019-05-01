@@ -1,0 +1,354 @@
+﻿@model DigitalSphere.Models.Employee
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid col-md-12">
+            <div class="navbar-header col-md-4">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="../Home/index" class="" style="padding-left: 70px">
+                    <font size="6" style="color: #00bcd4"><b><i>Digi</i></b></font>
+                    <font size="6" style="color: #ffffff"><b><i>tal</i></b></font>
+
+                    <font size="6" style="color: #00bcd4"><b><i>Sph</i></b></font>
+                    <font size="6" style="color: #ffffff"><b><i>ere</i></b></font>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse " id="myNavbar">
+                <ul class="nav navbar-nav nav-jusitified  col-md-7 " style="font-size: medium;">
+
+                    <li id="home">@Html.ActionLink("Home", "Index", null, new { @style = "width:230px" })</li>
+                    <li id="aboutus">@Html.ActionLink("About Us", "AboutUs", null, new { @style = "width:230px" })</li>
+                    <li id="contactus">@Html.ActionLink("Contact Us", "ContactUs", null, new { @style = "width:230px" })</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right text-center" style="margin-top: 13px; margin-right:10px;  font-size: large">
+                    <a href="#myModal" id="login" data-toggle="modal" data-target="#myModal" ><span class="glyphicon glyphicon-log-in" style="color: #00bcd4;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#myModal2" id="register" data-toggle="modal" data-target="#myModal2" ><span class="glyphicon glyphicon-user" style="color: #00bcd4;"></span></a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <!-- start of modal for login-->
+
+    <div class="modal fade" id="myModal" role="dialog">
+
+        <div class="modal-dialog">
+            <div class="modal-content" style="font-size: medium; color: black">
+
+                <div class="modal-header" style="padding: 35px 50px;">
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4 class="text-center"><span class="glyphicon glyphicon-lock "></span>Login</h4>
+                </div>
+
+                <div class="modal-body" style="padding: 40px 50px;">
+
+                    @using (Html.BeginForm("Login", "Home"))
+                    {
+                     
+                        @ViewBag.login   
+                        <form role="form">
+
+                            <div class="form-group">
+                                <label for="usrname"><span class="glyphicon glyphicon-user"></span>Username</label>
+                                @Html.TextBoxFor(m => m.Job_Id, new { id = "job_id", @class = "form-control", @placeholder = "Enter JOB-ID" })
+                            </div>
+
+                            <div class="form-group" style="font-size: small">
+                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>Password</label>
+                                @Html.PasswordFor(m => m.Password, new { id = "password", @class = "form-control", @placeholder = "Enter password" })
+                            </div>
+
+
+                            <button type="submit" id="loginbutton" class="btn  btn-block" style="background-color: #00bcd4; color: #ffffff">
+                                <span class="glyphicon glyphicon-off"></span>&nbsp;Login
+                            </button>
+
+                        </form>
+                    }
+
+                </div>
+
+                <div class="modal-footer">
+                    <p class="text-center">
+                        Not a member?
+                         <a href="#myModal2" data-dismiss="modal" data-target="#myModal2" data-toggle="modal">Sign Up</a>
+                        <br />
+                        <a href="#modal3" data-dismiss="modal" data-target="#modal3" data-toggle="modal">Forgot Password</a>
+
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- end of modal for log-in -->
+
+    <!-- start of modal for sign-up -->
+
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="color: black; font-size: small">
+
+                <div class="modal-header" style="padding: 35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center>
+                        <h4><span class="glyphicon glyphicon-lock"></span>Sign Up</h4>
+                    </center>
+                </div>
+
+                <div class="modal-body" style="padding: 40px 50px;">
+                    @using (Html.BeginForm("SignUp", "Home"))
+                    {
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="usrname"><span class="glyphicon glyphicon-user"></span>Username</label>
+                                @Html.TextBoxFor(m => m.Job_Id, new { id = "sjob_id", @class = "form-control", @placeholder = "Enter JOB-ID" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email"><span class="glyphicon glyphicon-envelope"></span>Email ID</label>
+                                @Html.TextBoxFor(m => m.Email, new { id = "semail", @class = "form-control", @placeholder = "Enter Email-Id" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact"><span class="glyphicon glyphicon-earphone"></span>Contact No</label>
+                                @Html.TextBoxFor(m => m.Contact, new { id = "scontact", @class = "form-control", @placeholder = "Enter Contact" })
+                            </div>
+
+                            <button type="submit" id="signup" class="btn btn btn-block" style="background-color: #00bcd4; color: #ffffff"><span class="glyphicon glyphicon-off"></span>&nbsp;Create Account</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- end of modal for sign-up -->
+
+    <div class="modal fade" id="modal3" role="dialog" style="padding-top: 200px">
+        <div class="modal-dialog" style="height: 20%; width: 40%">
+            <div class="modal-content">
+                <div class="modal-body" style="padding: 40px 50px; text-align: center">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h5 style="text-align:left">Enter your registered Email_Id. Password will be sent on this Email_id. </h5>
+                    <br />
+
+                    @using (Html.BeginForm("ForgotPassword", "Home"))
+                    {
+                        <form role="form" class="form">
+                            <div class="form-group">
+
+                                <input type="text" name="emailid" class="form-control" placeholder="Enter email id" />
+
+                            </div>
+
+                            <input type="submit" class="btn btn btn-block" style="background-color: #00bcd4;" />
+                        </form>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+
+
+
+    <!-- start of fixed-bottom(upcoming events)-->
+
+
+    <nav class="navbar navbar-fixed-bottom " style="height: 0.5%; opacity: 0.85">
+        <div class="col-md-12" style="background-color: #424242; color: #00bcd4;">
+            <br>
+            <font size="3">
+				<marquee class="center">
+					<b> 
+                        @foreach (var i in @Session["news"] as IEnumerable<DigitalSphere.Models.Notification>)
+                        { 
+                            @i.Message; 
+                                @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }
+
+
+					</b>
+				</marquee>
+				<br/><br/><br/>
+			</font>
+        </div>
+    </nav>
+
+    <!-- end of fixed-bottom(upcoming events)-->
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            //            alert($("#myModal"));
+
+
+           
+
+            jQuery.fn.extend({
+                disable: function (state) {
+                    return this.each(function () {
+                        this.disabled = state;
+                    });
+                }
+            });
+
+            // Disabled with:
+
+            $('#signup').disable(true);
+            $('#loginbutton').disable(true);
+
+            $("#sjob_id").change(function () {
+                var id = $("#sjob_id").val();
+                var email = $("#semail").val();
+                var contact = $("#scontact").val();
+
+                $.getJSON("../Home/CheckJobId", { JobId: id }, function (msg) {
+                    if (msg != "") {
+                        alert(msg);
+                        $("#signup").disable(true);
+
+                    }
+                });
+                $.getJSON("../Home/Enablesignup", { Job_Id: id, email: email, contact: contact }, function (msg) {
+                    if (msg == "Enable") {
+                        $("#signup").disable(false);
+                    }
+
+
+                    else if (msg == "Already Exists") {
+                        alert(msg);
+                    }
+                    else if (msg = "") { }
+                });
+
+            });
+
+            $("#semail").change(function () {
+
+                var id = $("#sjob_id").val();
+                var email = $("#semail").val();
+                var contact = $("#scontact").val();
+
+                $.getJSON("../Home/Checkemail", { email: email, job_id: id }, function (msg) {
+                    if (msg != "") {
+                        alert(msg);
+                        $("#signup").disable(true);
+                    }
+                });
+                $.getJSON("../Home/Enablesignup", { Job_Id: id, email: email, contact: contact }, function (msg) {
+                    if (msg == "Enable") {
+                        $("#signup").disable(false);
+                    }
+
+                    else if (msg == "Already Exists") {
+                        alert(msg);
+                    }
+                    else if (msg = "") { }
+
+                });
+            });
+            $("#scontact").change(function () {
+
+                var id = $("#sjob_id").val();
+                var email = $("#semail").val();
+                var contact = $("#scontact").val();
+                $.getJSON("../Home/Checkcontact", { contact: contact, job_id: id }, function (msg) {
+                    if (msg != "") {
+                        alert(msg);
+                        $("#signup").disable(true);
+
+                    }
+                });
+                $.getJSON("../Home/Enablesignup", { Job_Id: id, email: email, contact: contact }, function (msg) {
+                    if (msg == "Enable") {
+
+                        $("#signup").disable(false);
+                    }
+
+                    else if (msg == "Already Exists") {
+                        alert(msg);
+                    }
+                    else if(msg="") { }
+                });
+
+            });
+
+             @if(TempData["sent"] == "Password sent")
+            { 
+                @:alert("Your new password has been sent on your Email id");
+                        }
+
+
+           @if(TempData["email"] == "Email does not exist")
+           {
+               @:alert(TempData["email"]);
+                       }
+           
+            $("#job_id").change(function () {
+
+               
+                if ($('#password').val() == "" || $('#job_id').val() == "")
+                {
+                    $('#loginbutton').disable(true);
+                }
+               
+                else {
+                    $('#loginbutton').disable(false);
+
+                }
+            });
+            $("#password").change(function () {
+               
+                if ($('#job_id').val() == "" || $('#password').val() == "") {
+                    $('#loginbutton').disable(true);
+                }
+                else {
+                    $('#loginbutton').disable(false);
+                }
+                
+
+            });
+            
+
+        });
+    </script>
+</body>
+
+</html>

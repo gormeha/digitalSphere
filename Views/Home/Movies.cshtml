@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+<body background="~/images/back2.jpg">
+<div class="">
+    <div>
+@foreach(var i in ViewData["Movies"] as IEnumerable<DigitalSphere.Models.Movie>)
+{
+        <div id="multiplex">
+
+            <div class="col-md-4" style="padding-top: 70px; padding-left: 50px; padding-bottom: 50px;">
+                <div class="containmultiplex">
+                    <div class="thumbnail">
+                        @{
+    var imgString = Convert.ToBase64String(i.Movie_Pic);
+    var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                        }
+
+                        <img src="@pic" class="imagemovie" alt="Dear Zindagi">
+                    </div>
+                    <div class="middle">
+
+                        <div class="textmovie">
+
+                            <table style="color: white;">
+                                <tr style="vertical-align: top">
+                                    <td >Director
+                                    </td>
+                                    <td>:</td>
+                                    <td>@i.Director
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top">
+                                    <td>Cast
+                                    </td>
+                                    <td>:</td>
+                                    <td>@i.Starcast
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top">
+                                    <td>Producer</td>
+                                    <td>:</td>
+                                    <td>@i.Producer</td>
+                                </tr>
+                                <tr style="vertical-align: top">
+                                    <td>Writer</td>
+                                    <td>:</td>          
+                                    <td>@i.Writer</td>
+                                </tr>
+                                <tr style="vertical-align: top">
+                                    <td>Language
+                                    </td>
+                                    <td>:</td>
+                                    <td>@i.Language
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top">
+                                    <td>Genre 
+                                    </td>
+                                    <td>:</td>
+                                    <td>@i.Genre
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top">
+                                    <td style="width:100px">Censor Rating
+                                    </td>
+                                    <td>:</td>
+                                    <td>@i.Censor
+                                    </td>
+                                </tr>
+                               
+                            </table>
+                            <br />
+                            <div class="text-center">
+                            <a href="../Home/Booking/@i.MovieName" class="text-center">
+                                <button class="bookbutton">BOOK NOW</button>
+
+                            </a>
+                                </div>
+                        </div>
+                        <br />
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+}
+    </div>
+</div>
+ </body>
+       <script>
+        $(document).ready(function () {
+
+            $("#category").addClass("activetab");
+            $("#multiplex").addClass("activetab");
+
+
+        });
+
+    </script>

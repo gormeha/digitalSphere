@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "home";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+
+<body background="~/images/back2.jpg">
+  
+        <!-- start of categories-->
+        <div class="">
+
+            <div class="col-md-4" style="padding-bottom: 50px; padding-top: 70px">
+                <a href="../Home/Movies" >
+                    <div class="contains">
+
+                        <img src="~/images/mul.jpg" alt="multiplex " class="image2" style="width: 100%; height: 300px">
+
+                        <div class="over">
+                            <div class="text2">
+                                <center>
+                            	<b style="color: #424242">Multiplex</b><br/>
+                           	</center>
+                         </div>
+                    </div>
+                    </div>
+                </a>        
+        </div>
+  <div class="col-md-4" style="padding-bottom:50px; padding-top:70px">
+      <a href="../Home/library" >
+    <div class="contains">
+    
+        <img src="~/images/lib2.jpg" alt="library"  class="image2" style="width:100%; height:300px">
+      
+	  <div class="over">
+    <div class="text2">
+	<center>
+	<b style="color: #424242">Library</b><br/>
+	
+	</center>
+	</div>
+  </div>
+    </div>
+          </a>
+  </div>
+           
+  <div class="col-md-4" style="padding-bottom:50px; padding-top:70px">
+    
+    <div class="contains">
+        <img src="~/images/gym2.jpg" class="image2" alt="fitness center" style="width:100%; height:300px">
+      <div class="over">
+    <div class="text2">
+	<center>
+	<a href="../Home/Gym_content" style="color:#424242"><b>Gym</b></a><br/><br/>
+	<a href="../Home/Yoga_content" style="color:#424242"><b>Yoga</b></a>
+	</center>
+	</div>
+  </div>
+    </div>
+  </div> </div>
+   <div class="">
+  
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-4" style="padding-bottom:50px;">
+      <div class="contains">
+      
+        <img src="~/images/sports1.jpg"  class="image2" alt="sports" style="width:100%; height:300px">
+     <div class="over">
+    <div class="text2">
+	<center>
+	<a href="../Home/Indoor" style="color:#424242"><b>Indoor</b></a><br/><br/>
+	<a href="../Home/Outdoor" style="color:#424242"><b>Outdoor</b></a>
+	</center>
+	</div>
+  </div>
+    </div>
+  </div>
+  
+  
+  <div class="col-md-4" style=" padding-bottom:50px">
+    <a href="hall.html">
+      <div class="contains">
+      
+        <img src="~/images/hall2.jpg" class="image2" alt="banquet hall" style="width:100%; height:300px">
+      
+	  
+	  <div class="over">
+    <div class="text2">
+	<center>
+	<a href="../Home/hall" style="color:#424242"><b>Banquet Hall</b></a>
+	
+	</center>
+	</div>
+  </div>
+    </div>
+    </a>
+  </div>
+ <div class="col-md-2">
+ </div>
+	
+        </div>
+
+
+        <!-- End of categories-->
+
+    
+
+    <script>
+        $(document).ready(function () {
+
+            $("#home").addClass("activetab");
+
+        });
+
+    </script>
+
+</body>

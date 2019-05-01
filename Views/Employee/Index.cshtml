@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DigitalSphere.Models.Employee>
+
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>@ViewBag.j</h2>
+
+
+
+<div class="container">
+    <div class="">
+        <table border="1" class="table table-striped" style="margin-top: 100px;">
+            <thead style="font-size: small; color: blue">
+                <tr>
+                    <td>Picture</td>
+                    <td>Job_id</td>
+                    <td style="width:180px">Name</td>
+                    <td>Contact</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                    <td>Qualification</td>
+                    <td>Address</td>
+                    <td>DOB</td>
+                    <td>Gender</td>
+                    <td style="">Change Role</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody style="font-size: small">
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>
+                            @{
+                    var imgString = Convert.ToBase64String(i.Pro_pic);
+                    var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                }
+                                    
+                            <img src="@pic" class="img-circle" style="height:120px; width:120px" /></td>
+                        <td>@i.Job_Id</td>
+                        <td>@i.EmpName</td>
+                        <td>@i.Contact</td>
+                        <td>@i.Email</td>
+                        <td>@i.Role</td>
+                        <td>@i.Qualification</td>
+                        <td>@i.Address</td>
+                        <td>@i.DOB.ToShortDateString()</td>
+                        <td>@i.Gender</td>
+                        <td>@Html.ActionLink("Change Role", "Change_Role", new { id = @i.Job_Id })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = @i.Job_Id }, new { onclick = "return confirm('Are you sure you want to delete?')" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

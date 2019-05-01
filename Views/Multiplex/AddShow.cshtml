@@ -1,0 +1,108 @@
+﻿@model DigitalSphere.Models.ShowTime
+
+@{
+    ViewBag.Title = "AddShow";
+    Layout = "~/Views/Shared/Multiplex_Layout.cshtml";
+}
+
+<h2>AddShow</h2>
+
+ <div class="container">
+        <div class="col-md-6">
+@using (Html.BeginForm())
+{ 
+    
+            <form class="form" >
+
+
+                <div class="form-group">
+                        <label style="font-size:medium">Screen:</label>
+                       @Html.DropDownListFor(m => m.Screen_Id, new SelectList(ViewBag.screen as System.Collections.IEnumerable,"Screen_Id","Screen_Id"), "--SELECT--", new {id="Screen", @class="form-control"})
+
+                </div>
+                <div class="form-group">
+                        <label style="font-size:medium">Movie:</label>
+                       @Html.DropDownListFor(m => m.Movie_Id, new SelectList(ViewBag.movie as System.Collections.IEnumerable,"Movie_Id","MovieName"), "--SELECT--", new { @class="form-control"})
+
+                </div>
+                <div class="form-group">
+                        <label style="font-size:medium">Show Number:</label>
+                       @Html.DropDownListFor(m => m.Show_Number, new SelectList(ViewBag.number as System.Collections.IEnumerable, "Show_Number", "Show_Number"), "--SELECT--",  new {id="ShowNumber", @class = "form-control" })
+
+                </div>
+                <div class="form-group">
+                        <label style="font-size:medium">Show Time</label>
+                        @Html.TextBoxFor(m => m.Time, new { id="ShowTime", @class="form-control"})@ViewBag.showtime
+                    
+                </div>
+
+                <div class="form-group">
+                        <label style="font-size:medium">Availability</label>
+                        @Html.TextBoxFor(m => m.Availabilty, new { id="Available", @class="form-control"})
+                    
+                </div>
+
+                    @*@Html.TextBoxFor(m => m.Date, new { @class="form-control ", @placeholder="mm/dd/yyyy"})*@   
+                
+                
+                
+                <div class="form-group">
+                <div >
+                    @Html.TextBoxFor(m => m.Date, new { @class="form-control ", @placeholder="mm/dd/yyyy"})
+                    
+                </div>
+                </div>
+                
+
+
+                <button type="submit" class="btn btn-primary" >Add Show</button>
+            </form>
+}
+        </div>
+        <div class="col-md-3"></div>
+     </div>
+
+
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(document).ready(function () {
+        
+        $("#ShowNumber").change(function () {
+            
+            var Id = $(this).val();
+        
+            $.getJSON("../Multiplex/GetTime", {ShowId:Id}, function (Time) {
+
+                var label = $("#ShowTime");
+                label.text(Time);
+                label.val(Time);
+            });
+
+        });
+        $("#Screen").change(function () {
+
+            var Id = $(this).val();
+            $.getJSON("../Multiplex/GetAvailability", { Seats: Id }, function (Available) {
+
+                var label = $("#Available");
+                label.text(Available);
+                label.val(Available);
+                
+            });
+
+        });
+
+        $("#date").click(function(){
+            $(this).datepicker();
+        });
+
+        // var d = $("#date")
+
+    });
+
+
+</script>
+

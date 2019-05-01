@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DigitalSphere.Models.HallBooking>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="container">
+<div class="table-responsive"> 
+<table border="1" class="table table-striped" style="margin-top:100px;">
+    <thead style="font-size:small; color:blue">
+        <tr>
+            <td>Booking Id</td>
+            <td>Job Id</td>
+            <td>Occasion</td>
+            <td>DateFrom</td>
+            <td>DateTo</td>
+            <td>No of Days</td>
+            <td>Total Rate</td>
+        </tr>
+    </thead>
+    <tbody style="font-size:small">
+        @foreach (var i in Model)
+        {
+        <tr>
+
+            <td>@i.Booking_Id</td>
+            <td>@i.Job_Id</td>
+            <td>@i.Occasion</td>
+            <td>@i.DateFrom.ToShortDateString()</td>
+            <td>@i.DateTo.ToShortDateString()</td>
+            <td>@i.No_of_Days</td>
+            <td>@i.Total_Rate</td>
+        </tr>
+        }
+    </tbody>
+</table>
+    </div>
+</div>
+

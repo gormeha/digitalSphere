@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "YogaAdmin";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<body >
+    <div class="col-md-12">
+        <div class="col-md-3" style="margin-top: 110px; font-size: medium">
+            <ul class="nav nav-pills nav-stacked" style="background-color: #424242; color: #424242; text-align: center;">
+                <!--<li><a href="../yoga_content/Asthama" id="Asthama" style="color: white">Asthma</a></li>
+                <li><a href="../yoga_content/Blood Pressure" id="Blood Pressure" style="color: white">Blood Pressure</a></li>
+                <li><a href="../yoga_content/Cancer" id="Cancer" style="color: white">Cancer</a></li>
+                <li><a href="../yoga_content/Cervical" id="Cervical" style="color: white">Cervical</a></li>
+                <li><a href="../yoga_content/Constipation" id="Constipation" style="color: white">Constipation</a></li>
+                <li><a href="../yoga_content/Diabetes"id="Diabetes" style="color: white">Diabetes</a></li>
+                <li><a href="../yoga_content/HIV" id="HIV" style="color: white">HIV</a></li>
+                <li><a href="../yoga_content/Hernia" id="Hernia" style="color: white">Hernia</a></li>
+                <li><a href="../yoga_content/Menstruation" id="Menstruation" style="color: white">Menstruation</a></li>
+                <li><a href="../yoga_content/Obesity" id="Obesity" style="color: white">Obesity</a></li>-->
+
+                
+                @foreach (var i in ViewData["Disease"] as IEnumerable<string>)
+                {
+                    <li class="yogalist">@*<a href="../Home/Yoga/@i" id="@i" style="color: white">@i</a>*@ 
+                        @Html.ActionLink(i, "Yoga/"+i, "Admin", null, new {@id=i, @style="color:white"})
+                    </li> 
+                }
+                
+            </ul>
+        </div>
+        <div class="col-md-9 tab-content">
+            @RenderBody();
+
+        </div>
+
+    </div>
+</body>

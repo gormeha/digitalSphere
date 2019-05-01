@@ -1,0 +1,110 @@
+﻿@model IEnumerable<DigitalSphere.Models.Movie>
+@{
+    ViewBag.Title = "Movie";
+    Layout = "~/Views/Shared/Multiplex_Layout.cshtml";
+    var i = 1;
+}
+
+<h2>Movie</h2>
+
+<div>
+  @using (Html.BeginForm("Add","Multiplex",FormMethod.Get))
+  { 
+    <button type="submit" class="btn btn-success" style="position:absolute; right:30px; margin-top:20px; width:100px">Add</button>
+  }
+</div>
+<div class="container">
+<div class="" style="margin-top:50px">
+<table style="margin-left:20px; margin-top:50px;" class="table ">
+<tbody>    
+    <tr>
+@foreach(var item in Model){
+
+    i = i + 1;
+ 
+       <div class="col-md-4">
+     <div style="width:300px " class="text-center">
+       <div class="movie-back">
+@{    
+               var imgstring=Convert.ToBase64String(item.Movie_Pic);
+               var pic=String.Format("data:image/gif;base64,{0}",imgstring);
+                   
+            <img src="@pic"  alt="@item.MovieName" class="img-thumbnail movie-pic" height="300" width="300"/>
+           }
+
+           
+        <span class="movie-text">
+            @Html.ActionLink(" ", "Movie", new { id = @item.Movie_Id }, new { @class="glyphicon glyphicon-info-sign"})
+            @Html.ActionLink(" ", "Delete", new { id = @item.Movie_Id }, new { @class="glyphicon glyphicon-trash",onclick = "return confirm('Are you sure you want to delete?')" })
+           
+
+        </span> 
+        </div>
+        <div class="caption" style="font-size:medium; margin-top:20px; margin-bottom:50px">
+      
+            @Html.ActionLink(item.MovieName, "Movie",new { id=@item.Movie_Id})
+     
+        </div>   
+    </div>
+    </div>   
+
+    if (@i > 3)
+    { 
+        @:</tr>
+        @:<tr>
+            i = 1;
+    }
+    
+
+    }
+        </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+<!--
+<table border="1" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Censor</td>
+            <td>Censer Rating</td>
+            <td>Director</td>
+            <td>Genre</td>
+            <td>Language</td>
+            <td>Movie Id</td>
+            <td>Pic</td>
+            <td>Duration</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Producer</td>
+            <td>Release_Date</td>
+            <td>Star Cast</td>
+            <td>Writer</td>
+        </tr>
+    </thead>
+    <tbody>
+@*        @foreach (var i in Model)
+        {
+        <tr>
+            <td>@i.Censor</td>
+            <td>@i.Censor_Rating</td>
+            <td>@i.Director</td>
+            <td>@i.Genre</td>
+            <td>@i.Language</td>
+            <td>@i.Movie_Id</td>
+            <td>@i.Movie_Pic</td>
+            <td>@i.MovieDuration</td>
+            <td>@i.MovieName</td>
+            <td>@i.Price</td>
+            <td>@i.Producer</td>
+            <td>@i.Release_Date</td>
+            <td>@i.Starcast</td>
+            <td>@i.Writer</td>*@
+        </tr>
+        }
+    </tbody>
+</table>
+
+-->
+
+

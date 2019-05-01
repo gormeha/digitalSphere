@@ -1,0 +1,209 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Master_Layout</title>
+    
+    <link rel="stylesheet" href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" />
+   
+    
+    @Scripts.Render("~/bundles/jquery")    
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body> 
+    <div class="container-fluid " >
+
+        <!-- Top navbar  -->
+            
+        <div class="shadow navbar-fixed-top" style="background-color:skyblue ;">
+        
+            <!--Collapse btn-->
+            <div id="nav-button" class="btn btn-success" data-target="#left-navbar" onclick="openNav()">
+                <span style="font-size:30px;cursor:pointer; ">&#9776;</span>
+            </div>
+            <!--end collapse btn -->
+           
+            
+            @Html.ActionLink("Admin Panel", "Feedback", "Admin", null, new { @class = "text-center admin" })
+      
+            <!-- Profile tab -->
+        
+            <a class="profile" data-target="#profiles" onclick="showProfile()">
+
+                    @{
+                        var imgString = Convert.ToBase64String((byte[])Session["AdminPic"]);
+
+                            var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                    
+                
+                    
+                <img src="@pic" alt="not found" class="img-circle" style="height:inherit; width:60px" />
+                <label style="color:blue; position:absolute;top:10px;left:90px; ">@Session["Admin"] <br /> Administrator</label>
+                <span id="glyphi" style="position:absolute; top:20px; right:20px;" class="glyphicon glyphicon-chevron-down"></span>
+                    
+                        }
+            </a>
+            <ul id="profiles" class="list-group profilenav" style="width:0px">
+                    @Html.ActionLink("Profile", "Profile", "Admin", null, new { @class = "list-group-item" })   
+                    @Html.ActionLink("Change Password", "changePassword", "Admin", null, new { @class = "list-group-item" })
+                    @Html.ActionLink("Logout", "Logout", "Admin", null, new { @class = "list-group-item" })
+            </ul>
+            
+            <!--End Profile tab -->    
+
+        </div>
+        <!--End Top navbar  -->
+    
+        
+            
+        <!-- Left navbar-->
+        <div style="height:100%" >
+             <ul class="list-group sidenavicon" id="left-navbar-icon" style="font-size:15px; box-shadow:3px 3px 3px 3px grey">      
+                  
+                 <li>@Html.ActionLink(" ", "Index", "Employee", null, new {@id="employee", @class = "glyphicon glyphicon-user list-group-item", @style = "font-size:large" })</li>
+             <!--    <li class="list-group-item" style="background-color:#428bca; display:normal"><a href="../Employee/Index"><span class="glyphicon glyphicon-user "></span></a></li>-->
+                 <li><a href="#" class="fa fa-soccer-ball-o list-group-item" id="sport" style="font-size:large" data-toggle="collapse" data-target="#sportcategory1"></a>
+                       
+                    <ul class="collapse list-group" id="sportcategory1">
+                        <!--<a href="../Sports/indoor"  class="list-group-item fa fa-puzzle-piece sportcategory"  ></a>
+                        <a href="../Sports/outdoor" class="list-group-item fa fa-soccer-ball-o sportcategory" > </a>-->
+                        <li>@Html.ActionLink(" ", "indoor", "Sports",null, new {@id="indoor",@class="list-group-item fa fa-puzzle-piece sportcategory",@style="color:white; background-color:#428bca" })</li>
+                       <li>@Html.ActionLink(" ", "outdoor", "Sports",null, new {@id="outdoor",@class="list-group-item fa fa-soccer-ball-o sportcategory",@style="color:white; background-color:#428bca" })</li>
+                       
+                    </ul>
+                 </li>
+                 <li>@Html.ActionLink(" ", "Index", "Multiplex", null, new {@id="multiplex", @class = "glyphicon glyphicon-facetime-video list-group-item", @style = "font-size:large" })</li>
+                 <li>@Html.ActionLink(" ", "Index", "Library", null, new {@id="library", @class = "fa fa-book list-group-item", @style = "font-size:large" })</li>
+                 <li>@Html.ActionLink(" ", "Index", "Hall", null, new { @id="hall",@class = "list-group-item fa fa-institution", @style = "font-size:medium" })</li>
+                 <li>@Html.ActionLink(" ", "Index", "Gallery", null, new {@id="gallery", @class = "glyphicon glyphicon-picture list-group-item", @style = "font-size:large" })</li>
+      
+
+                 <li><a href="#" class=" list-group-item" id="fitness" style="font-size:large" data-toggle="collapse" data-target="#fitnesscategory"><svg fill="#FFFFFF" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+</svg></a>
+                       
+                    <ul class="collapse list-group" id="fitnesscategory">
+                        <!--<a href="../Sports/indoor"  class="list-group-item fa fa-puzzle-piece sportcategory"  ></a>
+                        <a href="../Sports/outdoor" class="list-group-item fa fa-soccer-ball-o sportcategory" > </a>-->
+                        <li>@Html.ActionLink(" ", "Yoga", "Admin",null, new {@id="yoga",@class="list-group-item fa fa-puzzle-piece sportcategory",@style="color:white; background-color:#428bca" })</li>
+                       <li>@Html.ActionLink(" ", "Gym", "Admin",null, new {@id="gym",@class="list-group-item fa fa-soccer-ball-o sportcategory",@style="color:white; background-color:#428bca" })</li>
+                       
+                    </ul>
+                 </li>
+                 
+
+
+
+                 <li>@Html.ActionLink(" ", "Notification", "Admin", null, new {@id="notification", @class = "list-group-item fa fa-bell", @style = "font-size:medium" })</li>
+                 <li>@Html.ActionLink(" ", "Feedback", "Admin", null, new {@id="feedback", @class = "list-group-item fa fa-comment", @style = "font-size:medium" })</li>
+         
+              </ul>
+              <ul class="list-group sidenav " style="width:0px; box-shadow:3px 3px 3px 3px grey" id="left-navbar">   
+                                  
+                 <li>  @Html.ActionLink(" Employee", "Index", "Employee", " ", new { @class = "glyphicon glyphicon-user list-group-item", @style = "font-size:large" })</li>
+                 <li><a href="#" class="fa fa-soccer-ball-o list-group-item" style="font-size:large" data-toggle="collapse" data-target="#sportcategory">&nbsp;&nbsp;&nbsp;&nbsp;Sports<span class="glyphicon glyphicon-chevron-down" style="margin-left:120px"></span></a>
+                       
+                    <ul class="collapse  list-group" id="sportcategory" style="margin-top:5px">
+                           <li class="">@Html.ActionLink("Indoor", "Indoor", "Sports", null, new { @class = "sportcategory list-group-item",@style="color:white; background-color:#428bca"  })</li>
+                           <li class="">@Html.ActionLink("Outdoor", "Outdoor", "Sports", null, new { @class = "sportcategory list-group-item",@style="color:white; background-color:#428bca"  })</li>
+                    </ul>
+                 </li>
+                 <li >@Html.ActionLink(" Multiplex", "Index", "Multiplex", null, new { @class = "glyphicon glyphicon-facetime-video list-group-item", @style = "font-size:large" })</li>
+                 <li >@Html.ActionLink("Library", "Index", "Library", null, new { @class = "fa fa-book list-group-item", @style = "font-size:large; " })</li>
+                 <li >@Html.ActionLink(" Hall", "Index", "Hall", null, new { @class = "list-group-item fa fa-institution", @style = "font-size:medium" })</li>
+                 <li >@Html.ActionLink(" Gallery", "Index", "Gallery", null, new { @class = "glyphicon glyphicon-picture list-group-item", @style = "font-size:large" })</li>
+                  
+                  <li><a href="#" class="list-group-item" style="font-size:large" data-toggle="collapse" data-target="#fitnesscate">
+                      <svg fill="#FFFFFF" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+</svg> &nbsp;&nbsp;Fitness center<span class="glyphicon glyphicon-chevron-down" style="margin-left:60px"></span>
+                      </a>
+                       
+                    <ul class="collapse  list-group" id="fitnesscate" style="margin-top:5px">
+                           <li class="">@Html.ActionLink("Yoga", "Yoga", "Admin", null, new { @class = "sportcategory list-group-item",@style="color:white; background-color:#428bca"  })</li>
+                           <li class="">@Html.ActionLink("Gym", "Gym", "Admin", null, new { @class = "sportcategory list-group-item",@style="color:white; background-color:#428bca"  })</li>
+                    </ul>
+                 </li>
+                  
+                  <li >@Html.ActionLink(" Notification", "Notification", "Admin", null, new { @class = "list-group-item fa fa-bell", @style = "font-size:large" })</li>
+              
+                  
+                  
+                  <li >@Html.ActionLink(" Feedback", "Feedback", "Admin", null, new { @class = "list-group-item fa fa-comment ", @style = "font-size:large" })</li>
+                                  
+              </ul>
+
+               
+        </div>
+
+         <!--End Left navbar-->
+                </div>
+         
+  
+    
+    <!-- content  -->
+
+        <div  id="main-content">
+            <div>@RenderBody()</div>
+        </div>
+    
+
+<script>
+
+    $('#employee').tooltip({ title: "Employee", trigger: "hover", placement:"right"});
+    $('#sport').tooltip({ title: "Sports", trigger: "hover", placement: "right" });
+    $('#multiplex').tooltip({ title: "Multiplex", trigger: "hover", placement: "right" });
+    $('#library').tooltip({ title: "Library", trigger: "hover", placement: "right" });
+    $('#feedback').tooltip({ title: "Feedbacks", trigger: "hover", placement: "right" });
+    $('#fitness').tooltip({ title: "Fitness", trigger: "hover", placement: "right" });
+    $('#notification').tooltip({ title: "Notification", trigger: "hover", placement: "right" });
+    $('#hall').tooltip({ title: "Hall", trigger: "hover", placement: "right" });
+    $('#gallery').tooltip({ title: "Gallery", trigger: "hover", placement: "right" });
+    $('#indoor').tooltip({ title: "Indoor", trigger: "hover", placement: "right" });
+    $('#outdoor').tooltip({ title: "Outdoor", trigger: "hover", placement: "right" });
+
+
+
+    function openNav() {
+       
+        if (document.getElementById("left-navbar").style.width == "0px") {
+           
+            document.getElementById("left-navbar-icon").style.width="0px";
+            document.getElementById("left-navbar").style.width = "250px";
+          
+            document.getElementById("main-content").style.marginLeft = "260px";
+        }
+        else {
+          document.getElementById("left-navbar-icon").style.width = "50px";
+            document.getElementById("left-navbar").style.width = "0px";
+            document.getElementById("main-content").style.marginLeft = "0px";
+      
+        }
+       
+    }
+
+    function showProfile() {
+        if (document.getElementById("profiles").style.width == "0px") {
+            document.getElementById("profiles").style.width = "250px";
+            document.getElementById("glyphi").className = "glyphicon glyphicon-chevron-up";
+
+        }
+        else {
+            document.getElementById("profiles").style.width = "0px";
+            document.getElementById("glyphi").className = "glyphicon glyphicon-chevron-down";
+        }
+
+    }
+</script>
+
+</body>
+</html>
+

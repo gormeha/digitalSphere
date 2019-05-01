@@ -1,0 +1,33 @@
+﻿@model DigitalSphere.Models.Coach
+
+@{
+    ViewBag.Title = "Add_Coach";
+    Layout = "~/Views/Shared/SportAdmin_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "addGym";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+@using (Html.BeginForm("Add_Coach", "Sports", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="col-md-3"> </div> 
+    <div  class="col-md-5" style="margin-top: 100px; margin-left: 80px">
+    <form class="form">
+        <input type="file" name="f"  class="form-control"/>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Job_Id, new { @class = "form-control", @placeholder = "Job Id" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Specialization, new { @class = "form-control", @placeholder = "Specialization" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Experience, new { @class = "form-control", @placeholder = "Experience" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Sport_Id, new { @class = "form-control", @placeholder = "Sport Id" })
+        </div>
+        <input type="submit" class="btn btn-primary form-control" value="Add" />
+    </form>
+        </div>
+}

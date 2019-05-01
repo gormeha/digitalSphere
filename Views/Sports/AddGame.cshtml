@@ -1,0 +1,61 @@
+﻿@model DigitalSphere.Models.Sport
+@{
+    ViewBag.Title = "AddPic";
+    Layout = "~/Views/Shared/SportAdmin_Layout.cshtml";
+    var Name = @ViewBag.msg;
+    }
+
+<h2>AddPic</h2>
+
+<div class="">
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-4">
+                        <h2 class="text-center">Add Sport</h2>
+                      
+                        @using (Html.BeginForm("AddGame", "Sports", FormMethod.Post, new {enctype = "multipart/form-data"}))                  
+                        {
+                            
+                        <form role="form">
+                            <div class="form-group">
+                               @Html.TextBoxFor(m => m.Sport_Id, new { @class = "form-control",@placeholder="Enter Sport ID"})<br />
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m=>m.Sport_Name, new {@class="form-control", @placeholder="Enter Sport Name"})<br />
+                            </div>
+                           
+                            <div class="form-group">
+                                @Html.TextBoxFor(m=>m.Fees, new {@class="form-control", @placeholder="Enter Sport Fees"})<br />
+                            </div>
+                            <div class="form-group">
+                                 @Html.TextBoxFor(m=>m.Time, new {@class="form-control", @placeholder="Enter Sport Time"})<br />
+                            </div>
+                            <div class="form-group">
+                                 @Html.TextBoxFor(m=>m.Day, new {@class="form-control", @placeholder="Enter Sport Day"})<br />
+                            </div>
+                            <div class="form-group">
+                                 @Html.TextBoxFor(m=>m.Description, new {@class="form-control", @placeholder="Enter Duration"})<br/>
+                            </div>
+
+                            <div class="form-group">
+                                 @Html.TextBoxFor(m=>m.Description, new {@class="form-control", @placeholder="Enter Sport Description"})<br/>
+                            </div>
+                            <div class="form-group">
+                                <input type="file" class="form-control" name="pic1" />
+                            </div>
+                            <div class="form-group">
+                                 @Html.TextBoxFor(m=>m.Category, new {@class="form-control", @placeholder="Enter Sport Category"})<br />
+                            </div>
+
+                            <hr />
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">ADD</button>
+                            </div>
+                         </form>
+                        }
+
+                    </div>
+
+
+                    <div class="col-md-4"></div>
+ </div>

@@ -1,0 +1,289 @@
+﻿@model DigitalSphere.Models.Employee_Dum
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Master_Layout</title>
+    <link rel="stylesheet" href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+
+    <!-- start of fixed top(header)-->
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid col-md-12">
+            <div class="navbar-header col-md-4">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="../Home/home" class="" style="padding-left: 70px">
+                    <font size="6" style="color: #00bcd4"><b><i>Digi</i></b></font>
+                    <font size="6" style="color: #ffffff"><b><i>tal</i></b></font>
+
+                    <font size="6" style="color: #00bcd4"><b><i>Sph</i></b></font>
+                    <font size="6" style="color: #ffffff"><b><i>ere</i></b></font>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse " id="myNavbar">
+                <ul class="nav navbar-nav nav-jusitified  col-md-7" style="font-size: medium;">
+
+                    <li id="home">@Html.ActionLink("Home", "home")</li>
+
+                    <!--<li class="active"><a href="index.html"  onMouseOver="this.style.color='#424242'" onMouseOut="this.style.color='#ffffff'" style="color:#424242; background-color:#00bcd4 "><b>Home</b></a></li>-->
+                    <!--	<li><a href="gallery.html"  onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff;"><b>Gallery</b></a></li>-->
+
+                    <li id="gallery" style="color: white">@Html.ActionLink("Gallery", "Album")</li>
+
+
+                    <li id="category" class="dropdown" style="color: white">
+                        <a class="dropdown-toggle" data-toggle="dropdown" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#ffffff'" href="#" style="color: #ffffff;"><b>Categories</b>
+                            <span class="glyphicon glyphicon-chevron-down" style="font-size: x-small"></span></a>
+                        <ul class="dropdown-menu" style="width: 171px; background-color: #424242">
+                            <!--<li><a href="multiplex.html" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b>Multiplex</b></a></li>-->
+
+                            <li id="multiplex">@Html.ActionLink("Multiplex", "Movies", null, new { @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+
+                            <!--<li><a href="#" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b>Library</b></a></li> -->
+
+                            <li id="library">@Html.ActionLink("Library", "library", null, new { @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+
+                            <li class="dropdown-submenu">
+                                <a href="#" tabindex="0" class="test" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#ffffff'" id="sport" style="color: #ffffff"><b>Sport&nbsp;</b>
+                                    <span class="glyphicon glyphicon-chevron-down" style="margin-left: 75px; font-size: small"></span></a>
+                                <ul class="dropdown-menu" style="background-color: #424242">
+                                    <!--<li><a href="indoor.html" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Indoor</center></b></a></li>
+									<li><a href="outdoor.html" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Outdoor</center></b></a></li>-->
+                                    <li id="indoor">@Html.ActionLink("Indoor", "Indoor", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                    <li id="outdoor">@Html.ActionLink("Outdoor", "Outdoor", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                </ul>
+                            </li>
+                            <!--<li><a href="#" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b>Hall</b></a></li>-->
+
+                            <li id="hall">@Html.ActionLink("Hall", "hall", null, new { @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+
+                            <li class="dropdown-submenu">
+                                <a href="#" tabindex="0" class="test" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#ffffff'" style="color: #ffffff" id="fitness"><b>Fitness centre</b>
+                                    <span class="glyphicon glyphicon-chevron-down" style="margin-left: 25px; font-size: small"></span></a>
+                                <ul class="dropdown-menu" style="background-color: #424242">
+                                    <!--<li><a href="#" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Gym</center></b></a></li>
+									<li><a href="#" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Yoga</center></b></a></li>-->
+                                    <li id="gym">@Html.ActionLink("Gym", "Gym_content", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                    <li id="yoga">@Html.ActionLink("Yoga", "Yoga_content", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="aboutus">@Html.ActionLink("About Us", "About")</li>
+
+                    <li id="contactus">@Html.ActionLink("Contact Us", "Contact")</li>
+
+                    <!--					<li><a href="aboutus.html"   onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff;"><b>About us</b></a></li>
+					<li><a href="contactus.html" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff;"><b>Contact us</b></a></li>-->
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <a href="#" id="user" data-target="#profiles" data-toggle="collapse" class="fa fa-user-circle" style="color: #00bcd4; margin-top: 10px; margin-right: 40px; font-size: xx-large"></a>
+                </ul>
+                <ul id="profiles" class="collapse userpro" >
+
+                    <li class=" text-center">
+                        <a href="../Home/profile" class="list-group-item" style="background-color: #00bcd4; color:white">
+                            <br />
+                            @{
+                                var imgString = Convert.ToBase64String((byte[])Session["EmpPic"]);
+                                var pic = String.Format("data:image/gif;base64,{0}", imgString);
+                            }
+                            <img src="@pic" class="img-circle" style="height:70px; width:70px"/><br />
+                            <br />
+                            <span>@Session["Employee"]</span>
+                        </a>
+                    </li>
+                    <li class="text-center" >
+                        @Html.ActionLink("Change Password", "changePassword", "Home", null, new { @class = "list-group-item", @style = "background-color:#00bcd4;color:white" })</li>
+                    <li class="text-center">@Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "list-group-item", @style = "background-color:#00bcd4;color:white" })</li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    @*
+    <nav class="navbar  navbar-fixed-top" style="height: 3%">
+        <div class="col-md-12" style="height: 85%; background-color: #424242">
+
+            <div class="col-md-4" style="padding-left: 70px;">
+                <font size="6" style="color: #00bcd4"><b><i>Digi</i></b></font>
+                <font size="6" style="color: #ffffff"><b><i>tal</i></b></font>&nbsp; &nbsp; &nbsp; &nbsp;	 
+                    <font size="6" style="color: #00bcd4"><b><i>sph</i></b></font>
+                <font size="6" style="color: #ffffff"><b><i>ere</i></b></font>
+            </div>
+
+            <div class="col-md-7">
+                <ul class="nav nav-pills nav-justified" style="background-color: #424242; font-size: medium; color: #ffffff">
+                    <li id="home">@Html.ActionLink("Home", "home")</li>
+
+                    <!--<li class="active"><a href="index.html"  onMouseOver="this.style.color='#424242'" onMouseOut="this.style.color='#ffffff'" style="color:#424242; background-color:#00bcd4 "><b>Home</b></a></li>-->
+                    <!--	<li><a href="gallery.html"  onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff;"><b>Gallery</b></a></li>-->
+
+                    <li id="gallery">@Html.ActionLink("Gallery", "Gallery")</li>
+
+
+                    <li id="category" class="dropdown" >
+                        <a class="dropdown-toggle" data-toggle="dropdown" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#ffffff'" href="#" style="color: #ffffff;"><b >Categories</b>
+                            <span class="glyphicon glyphicon-chevron-down" style="font-size: x-small"></span></a>
+                        <ul class="dropdown-menu" style="width: 171px; background-color: #424242">
+                            <!--<li><a href="multiplex.html" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b>Multiplex</b></a></li>-->
+
+                            <li id="multiplex">@Html.ActionLink("Multiplex", "Movies",null, new { @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+
+                            <!--<li><a href="#" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b>Library</b></a></li> -->
+
+                            <li id="library">@Html.ActionLink("Library", "library", null, new { @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+
+                            <li class="dropdown-submenu">
+                                <a href="#" tabindex="0" class="test" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#ffffff'" style="color: #ffffff"><b>Sport&nbsp;</b>
+                                    <span class="glyphicon glyphicon-chevron-down" style="margin-left: 75px; font-size: small"></span></a>
+                                <ul class="dropdown-menu" style="background-color: #424242">
+                                    <!--<li><a href="indoor.html" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Indoor</center></b></a></li>
+									<li><a href="outdoor.html" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Outdoor</center></b></a></li>-->
+                                    <li id="indoor">@Html.ActionLink("Indoor", "indooruser", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                    <li id="outdoor">@Html.ActionLink("Outdoor", "indooruser", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                </ul>
+                            </li>
+                            <!--<li><a href="#" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b>Hall</b></a></li>-->
+
+                            <li id="hall">@Html.ActionLink("Hall", "hall", null, new { @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+
+                            <li class="dropdown-submenu">
+                                <a href="#" tabindex="0" class="test" onmouseover="this.style.color='#00bcd4'" onmouseout="this.style.color='#ffffff'" style="color: #ffffff"><b>Fitness centre</b>
+                                    <span class="glyphicon glyphicon-chevron-down" style="margin-left: 25px; font-size: small"></span></a>
+                                <ul class="dropdown-menu" style="background-color: #424242">
+                                    <!--<li><a href="#" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Gym</center></b></a></li>
+									<li><a href="#" tabindex="0" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff"><b><center>Yoga</center></b></a></li>-->
+                                    <li id="gym">@Html.ActionLink("Gym", "gym", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                    <li id="yoga">@Html.ActionLink("Yoga", "yoga", null, new { @tabindex = 0, @style = "color:#fff; font-weight:bold", @onMouseOver = "this.style.color='#00bcd4'", @onMouseOut = "this.style.color='#ffffff'" })</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="aboutus">@Html.ActionLink("About Us", "About")</li>
+
+                    <li id="contactus">@Html.ActionLink("Contact Us", "Contact")</li>
+
+                    <!--					<li><a href="aboutus.html"   onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff;"><b>About us</b></a></li>
+					<li><a href="contactus.html" onMouseOver="this.style.color='#00bcd4'" onMouseOut="this.style.color='#ffffff'" style="color:#ffffff;"><b>Contact us</b></a></li>-->
+
+                </ul>
+            </div>
+
+            <div class="col-md-1 text-center" style="height: 85%; color: #ffffff; padding-top: 10px">
+
+
+
+                <span id="user" data-target="#profiles" onclick="showProfile()" class="fa fa-user-circle" style="color: #00bcd4; font-size: x-large"></span>
+
+                <div id="profiles" class=" userpro" style="width: 0px">
+                    
+                    <span>
+                        <br />
+                        <img src="~/images/pinky.jpg" class="img-circle" style="height:50px; width:50px"/><br /><br />
+                        @Session["Employee"]
+
+                    </span>
+
+                    <ul class="list-group">
+
+                        @Html.ActionLink("Profile", "Index", "Employee",null, new { @class = "list-group-item" })
+                        @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "list-group-item" })
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+    *@
+    <!-- End of fixed top-->
+
+    <!-- start of fixed-bottom(upcoming events)-->
+
+
+    <nav class="navbar navbar-fixed-bottom " style="height: 0.5%; opacity: 0.85">
+        <div class="col-md-12" style="background-color: #424242; color: #00bcd4;">
+            <br>
+            <font size="3">
+				<marquee class="center">
+					<b><!-- There will be a skit play on Gandhiji at Banquet hall on 2nd November.   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						There will be the meeting of employees on 5th November.				   	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Ratri before Navratri will be held at our common plot on 30th September. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Book Exhibition organised by our library staff near Library on 1st November.-->
+                         @foreach (var i in @Session["news"] as IEnumerable<DigitalSphere.Models.Notification>)
+                        { 
+                            @i.Message;
+                             @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }
+
+					</b>
+				</marquee>
+				<br/><br/><br/>
+			</font>
+        </div>
+    </nav>
+
+    <!-- end of fixed-bottom(upcoming events)-->
+
+
+    @RenderBody();
+    <!-- start of site map-->
+
+
+
+    <!--<div class="col-md-12" style="background-color: #424242; color: #ffffff; margin-top:200px">
+        <center><h3>Site Map</h3></center>
+    </div>
+    -->
+    <!-- end of site map-->
+
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu a.test').on("click", function (e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+        });
+
+        function showProfile() {
+            if (document.getElementById("profiles").style.width == "0px") {
+                document.getElementById("profiles").style.width = "150px";
+
+
+            }
+            else {
+                document.getElementById("profiles").style.width = "0px";
+
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DigitalSphere.Models.Feedback>
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Feedback</h2>
+
+<div class="container">
+<div class="table-responsive"> 
+<table border="1" class="table table-striped" style="margin-top:100px;">
+    <thead style="font-size:small; color:blue">
+        <tr>
+           
+            <td>Feedback</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Contact</td>
+            <td>Date</td>
+        </tr>
+    </thead>
+    <tbody style="font-size:small">
+        @foreach (var i in Model)
+        {
+        <tr>
+<td>@i.Description</td>
+            <td>@i.Name</td>
+            <td>@i.Email</td>
+            <td>@i.Contact</td>
+            <td>@i.Date.ToShortDateString()</td>
+            
+            <td>@Html.ActionLink("Delete","DeleteFeedback",new { id=@i.Feedback_Id},new{ onclick="return confirm('Are you sure you want to delete?')"})</td>
+        </tr>
+        }
+    </tbody>
+</table>
+    </div>
+</div>

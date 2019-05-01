@@ -1,0 +1,59 @@
+﻿@model DigitalSphere.Models.Employee
+@{
+    ViewBag.Title = "Change_Role";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Change_Role</h2>
+
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="margin-top: 40px">
+            <h4>
+                <div class="col-md-6">
+                    <div>
+                        Job Id:                  
+                        <br />
+                        <br />
+                    </div>
+                    <div>
+                        Current Role: 
+                        <br />
+                        <br />
+                    </div>
+                    <div>
+                        New Role<br />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        @Html.DisplayFor(m => m.Job_Id)
+                        <br />
+                        <br />
+                    </div>
+                    <div>
+                        @Html.DisplayFor(m => m.Role, new { @style = "margin-top:5px" })
+                        <br />
+                        <br />
+                    </div>
+                    <div>
+
+                        @Html.DropDownListFor(m => m.Role, new SelectList(ViewBag.Rolelist as System.Collections.IEnumerable), new { @id = "m.Role", @class = "form-control" })
+                        <br />
+                        <br />
+                        @*@Html.TextBoxFor(m => m.Role, new { @class = "form-control", @placeholder = "Enter new Role", @id="m.Contact" })*@
+
+                        @Html.HiddenFor(m => m.Job_Id)
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+
+            </h4>
+        </div>
+                           
+    }
+</div>

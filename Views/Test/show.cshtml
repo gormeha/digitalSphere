@@ -1,0 +1,23 @@
+﻿@model IEnumerable<DigitalSphere.Models.Admin>
+@{
+    ViewBag.Title = "show";
+    Layout = null;
+}
+
+
+<h2>show</h2>
+
+
+@foreach (var i in Model)
+{
+
+<div>
+    @i.Job_Id
+</div>
+<div>
+    @i.Password
+</div>
+    <div>@i.Role</div>
+    <div>@i.TID</div>
+}
+

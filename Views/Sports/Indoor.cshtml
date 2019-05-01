@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DigitalSphere.Models.Sport>
+@{
+    ViewBag.Title = "Indoor";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Indoor</h2>
+
+@{
+    var i = 1; 
+}
+<div class="container ">
+<table style="margin-left:20px; margin-top:50px;" class="table ">
+<tbody>    
+    <tr>
+@foreach(var item in Model){
+
+    i = i + 1;
+    <div class="col-md-4">
+    <div style="width:300px " class="text-center">
+       <div class="sport-back  ">
+           @{    
+               var imgstring=Convert.ToBase64String(item.Picture);
+               var pic=String.Format("data:image/gif;base64,{0}",imgstring);
+                   
+            <img src="@pic"  alt="@item.Sport_Name"  class=" sport-pic"  style="height:200px; width:300px"/>
+           }
+          <span class="sport-text">
+            @Html.ActionLink(" ", "Sport",new {id=@item.Sport_Id},new{ @class="glyphicon glyphicon-info-sign"})
+           
+        </span> 
+        </div>     
+        <div class="caption" style="font-size:medium; margin-top:20px">
+            @Html.ActionLink(@item.Sport_Name,"Sport",new {id= @item.Sport_Id})
+        </div>
+
+
+        <div>
+
+        </div>              
+    </div>
+        </div>
+    if (@i > 3)
+    { 
+        @:</tr>
+        @:<tr>
+            i = 1;
+    }
+    
+
+    }
+        </tr>
+    </tbody>
+    </table>
+
+    </div>

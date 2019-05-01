@@ -1,0 +1,79 @@
+﻿@model IEnumerable<DigitalSphere.Models.Coach_Emp_Sport>
+
+@{
+    ViewBag.Title = "sport";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>sport</h2>
+
+    @if (ViewBag.coach_assoc == "No Coach assigned")
+    {
+        <h3 class="text-center" style="height:50px;">@ViewBag.coach_assoc</h3>
+    }
+    else
+    {
+    <div class="container" style="height:400px; ">
+    <div class="jumbotron" style="background-color: #ccc; height: 100px; margin-top: 50px">        
+    @foreach (var item in Model)
+    { 
+        <div class="col-md-4 text-center" style="margin-left: 50px">
+            @{    
+        var imgstring = Convert.ToBase64String(item.Pro_pic);
+        var pic = String.Format("data:image/gif;base64,{0}", imgstring);
+               }
+            <img src="@pic" class="img-circle" alt="Coach Profile" style="height:250px; width:250px" />
+        </div>
+        <div style="font-size: large; font-weight: 100; font-family:'Times New Roman'">
+           <br />
+            <span style="font-size: x-large; font-weight: bold">@item.EmpName<br />
+            </span><br />
+            <span>Specialization in  </span>@item.Specialization<br />
+            @item.Experience <span>Experience</span><br />
+           
+            @item.Email<br />
+            @item.Contact
+
+        </div>
+       
+    }
+   
+</div>
+        </div>
+    }
+<!-- Sport details-->
+
+<div class="container">
+<div class="jumbotron" style="background-color:#ccc; height:100px;" >
+    <div style="font-size:large">
+    <div class="col-md-4 text-center"  style="margin-left:50px; ">
+        @foreach (var item in Model)
+        {
+            var imgstring = Convert.ToBase64String(item.Picture);
+            var pic = String.Format("data:image/gif;base64,{0}", imgstring);
+               
+             <img src="@pic" class="img-circle" alt="Coach Profile" style="height:250px; width:250px" />
+       
+    @:</div>
+     @:<div>
+        <div style="font-size: large; font-weight: 100; font-family:'Times New Roman'">
+           <br />
+           
+            <span style="font-size:x-large; font-weight:bold">  @item.Sport_Name<br />
+               </span> <br />
+                @item.Description<br />
+                @item.Time<br />
+                @item.Day<br />
+                @item.Duration<br />
+                @item.Fees <span>Rs/Month</span> <br /></div>
+                
+        }
+            
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+<!-- End Sport details-->

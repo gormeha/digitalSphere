@@ -1,0 +1,61 @@
+﻿@model DigitalSphere.Models.Admin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+                <div class="row">
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-4">
+                        
+                        <h3>@ViewBag.m</h3>
+                        @using (Html.BeginForm())
+                        {
+                        <form role="form">
+                            <div class="form-group">
+                                <!--<input type="text" class="form-control" placeholder="Enter Your Username" id="name"/>-->
+                                @Html.TextBoxFor(m => m.Job_Id, new { @class = "form-control", @placeholder = "Enter Your Job_ID"})
+                            </div>
+
+
+                            <div class="form-group">
+
+<!--                                <input type="password" class="form-control" placeholder="Enter Your Password" id="password"/>-->
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Your Password"})
+                            </div>
+
+                             <div class="form-group">
+
+<!--                                <input type="password" class="form-control" placeholder="Enter Your Password" id="password"/>-->
+                                @Html.TextBoxFor(m => m.Role, new { @class = "form-control", @placeholder = "Enter Your Role"})
+                            </div>
+
+
+
+                            <hr />
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">ADD</button>
+                            </div>
+                         </form>
+                        }
+
+                    </div>
+
+
+                    <div class="col-md-4"></div>
+
+                </div>
+           
+        </body>
+    </html>
